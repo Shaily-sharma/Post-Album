@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import "../../style.css";
+import "../style.css";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -40,7 +40,7 @@ export default function AlertDialogSlide({ photo }) {
                     }}
                   >
                     <div style={{ display: "flex" }}>
-                      <img src={v.url} alt="cart_item" width="80" height="90" />
+                      <img src={v.url} alt="photos" width="80" height="90" />
                     </div>
                   </div>
                 </>

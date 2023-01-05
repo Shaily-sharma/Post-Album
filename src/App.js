@@ -1,10 +1,10 @@
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./components/Home";
-import TablePaginationActions from "./components/Page/Page";
-import TablePaginationActionss from "./components/albums/componentss/AlbumP";
+import TablePaginationActions from "./components/posts/Page";
+import TablePaginationActionss from "./components/albums/AlbumP";
 
 function App() {
   return (

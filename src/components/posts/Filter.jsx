@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useDispatch, useSelector } from "react-redux";
-import { setPersonName, setResult } from "./Redux/actions";
+import { setPersonName, setResult } from "../../Redux/Post/actions";
 import "../style.css";
 
 export default function Filter() {

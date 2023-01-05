@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import { cre } from "../actionss/indexx";
+import { cre } from "../../Redux/Album/actions/index";
 import { useDispatch } from "react-redux";
 
 export default function Alertt() {

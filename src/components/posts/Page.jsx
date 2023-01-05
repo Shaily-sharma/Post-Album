@@ -18,7 +18,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-import Alert from "./create";
+import Alert from "./Create";
 
 import {
   editUser,
@@ -26,13 +26,13 @@ import {
   getRecord,
   getUser,
   userdelete,
-} from "./Redux/actions";
+} from "../../Redux/Post/actions";
 import AlertDialog from "./Dialog";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import Filter from "./Filter";
-import AlertDialogSlide from "./comment";
-import FullScreenDialog from "./show";
+import AlertDialogSlide from "./Comment";
+import FullScreenDialog from "./Show";
 function TablePaginationActions(props) {
   const dispatch = useDispatch();
   const theme = useTheme();

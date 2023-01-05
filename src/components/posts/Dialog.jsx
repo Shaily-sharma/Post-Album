@@ -7,14 +7,18 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
+import "../style.css";
 import { useEffect } from "react";
-import { getedit } from "../actionss/indexx";
+import { editRecord } from "../../Redux/Post/actions";
 
-export default function AlertDialognew() {
-  const user = useSelector((state) => state.albumreducer.editbut);
-  console.log(user, "??/");
+export default function AlertDialog() {
+  const user = useSelector((state) => state.datareducer.editUser);
+
   const [open, setOpen] = React.useState(true);
-  const [edit, setEdit] = useState(user, { title: "", body: "" });
+  const [edit, setEdit] = useState({
+    title: "",
+    body: "",
+  });
 
   useEffect(() => {
     if (user[0]) setEdit(user[0]);
@@ -28,13 +32,14 @@ export default function AlertDialognew() {
 
   const handleEditSave = (id, data) => {
     console.log(data, id);
-    dispatch(getedit(data, id));
+    dispatch(editRecord(data, id));
     setOpen(false);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleReset = () => {
     setEdit({
       title: "",
@@ -68,6 +73,23 @@ export default function AlertDialognew() {
                   onChange={(e) => handleChange(e)}
                 />
               </div>
+            </div>
+
+            <div className="width">
+              <p>Body:</p>
+              <input
+                style={{
+                  border: "1px solid black",
+                  borderRadius: "5px",
+                  height: "4rem",
+                  textAlign: "left",
+                  overflow: "hidden",
+                }}
+                className="input"
+                name="body"
+                value={edit.body}
+                onChange={(e) => handleChange(e)}
+              />
             </div>
           </form>
         </DialogContent>

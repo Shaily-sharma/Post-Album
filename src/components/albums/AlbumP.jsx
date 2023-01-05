@@ -12,7 +12,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { getAlb,getimg } from "../actionss/indexx";
+import { getAlb,getimg } from "../../Redux/Album/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
@@ -21,9 +21,9 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { editbut, userdelete } from "../actionss/indexx";
-import Alertt from "./alcreate";
-import AlertDialognew from "./modal";
+import { editbut, userdelete } from "../../Redux/Album/actions/index"
+import Alertt from "./Alcreate";
+import AlertDialognew from "./Modal";
 import Swal from "sweetalert2";
 import AlertDialogSlide from './Photos'
 import FullScreenDialogg from "./All"
