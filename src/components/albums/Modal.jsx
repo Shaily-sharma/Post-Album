@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getedit } from "../../Redux/Album/actions/index";
 
-export default function AlertDialognew() {
+export default function Modal() {
   const user = useSelector((state) => state.albumreducer.editbut);
   console.log(user, "??/");
   const [open, setOpen] = useState(true);

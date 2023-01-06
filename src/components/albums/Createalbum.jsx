@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import { cre } from "../../Redux/Album/actions/index";
 import { useDispatch } from "react-redux";
 
-export default function Alertt() {
+export default function Createalbum() {
   const [open, setOpen] = useState(true);
   const [data, setData] = useState({ title: "" });
 

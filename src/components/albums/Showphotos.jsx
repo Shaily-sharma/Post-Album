@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({ photo }) {
+export default function Showphotos({ photo }) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {

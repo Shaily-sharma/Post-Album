@@ -6,7 +6,7 @@ export default function Navbar() {
         <nav className='nav'>
 
 
-            <Link to='/page' className='List'>Post</Link>
+            <Link to='/post' className='List'>Post</Link>
             <Link to='/Albump' className='Album'>Album</Link>
 
         </nav>

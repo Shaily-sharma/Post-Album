@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { crea } from "../../Redux/Post/actions/index";
 import "../style.css";
 
-export default function Alert() {
+export default function Createpost() {
   const [open, setOpen] = useState(true);
 
   const [data, setData] = useState({ title: "", body: "" });

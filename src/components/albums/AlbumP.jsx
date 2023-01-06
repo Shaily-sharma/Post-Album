@@ -22,13 +22,13 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { editbut, userdelete } from "../../Redux/Album/actions/index"
-import Alertt from "./Createalbum";
-import AlertDialognew from "./Modal";
+import Createalbum from "./Createalbum";
+import Modal from "./Modal";
 import Swal from "sweetalert2";
-import AlertDialogSlide from './Showphotos'
-import FullScreenDialogg from "./Addalbum"
+import Showphotos from './Showphotos'
+import  Addalbum from "./Addalbum"
 
-function TablePaginationActionss(props) {
+function Albump(props) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -96,14 +96,14 @@ function TablePaginationActionss(props) {
   );
 }
 
-TablePaginationActionss.propTypes = {
+Albump.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function CustomPaginationActionsTable() {
+export default function Album() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [visible,setVisible]=useState(false);
@@ -264,16 +264,16 @@ const createalbum=()=>{
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActionss}
+                ActionsComponent={Albump}
               />
             </TableRow>
           </TableFooter>
         </Table>
       </TableContainer>
-      {show ? <AlertDialognew /> : ""}
-      {visible ? <AlertDialogSlide photo={pho} /> : ""}
-      {display && <Alertt display={display} />}
-      {vis?<FullScreenDialogg/>:""}
+      {show ? <Modal /> : ""}
+      {visible ? <Showphotos photo={pho} /> : ""}
+      {display && <Createalbum display={display} />}
+      {vis?< Addalbum/>:""}
     </div>
   );
 }

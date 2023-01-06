@@ -18,7 +18,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-import Alert from "./Createpost";
+import Createpost from "./Createpost";
 
 import {
   editUser,
@@ -27,13 +27,13 @@ import {
   getUser,
   userdelete,
 } from "../../Redux/Post/actions";
-import AlertDialog from "./Dialog";
+import Dialogbox from "./Dialogbox";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import Filter from "./Filter";
-import AlertDialogSlide from "./Comment";
-import FullScreenDialog from "./Showpost";
-function TablePaginationActions(props) {
+import Filtername from "./Filtername";
+import  Comment from "./Comment";
+import Showpost from "./Showpost";
+function Post(props) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -102,14 +102,14 @@ function TablePaginationActions(props) {
   );
 }
 
-TablePaginationActions.propTypes = {
+Post.propTypes = {
   count: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function CustomPaginationActionsTable() {
+export default function Postp() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -170,7 +170,7 @@ export default function CustomPaginationActionsTable() {
 
   return (
     <div>
-      <Filter />
+      <Filtername />
       <Button
         style={{
           color: "black",
@@ -296,16 +296,16 @@ export default function CustomPaginationActionsTable() {
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
+                ActionsComponent={Post}
               />
             </TableRow>
           </TableFooter>
         </Table>
       </TableContainer>
-      {visible ? <AlertDialogSlide data={comment} /> : ""}
-      {show ? <AlertDialog /> : ""}
-      {display ? <Alert /> : ""}
-      {vis ? <FullScreenDialog /> : ""}
+      {visible ? < Comment data={comment} /> : ""}
+      {show ? <Dialogbox /> : ""}
+      {display ? <Createpost/> : ""}
+      {vis ? <Showpost /> : ""}
     </div>
   );
 }

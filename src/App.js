@@ -3,8 +3,8 @@ import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./components/Home";
-import TablePaginationActions from "./components/posts/Page";
-import TablePaginationActionss from "./components/albums/AlbumP";
+import Album from "./components/albums/AlbumP";
+import Postp from "./components/posts/Post";
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-         <Route path="/AlbumP" element={<TablePaginationActionss />} />
-          <Route path="/page" element={<TablePaginationActions />} />
+         <Route path="/AlbumP" element={<Album />} />
+          <Route path="/post" element={<Postp />} />
         </Routes>
       </Router>
     </div>
