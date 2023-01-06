@@ -13,9 +13,9 @@ export const albumreducer = (state = initial_state, action) => {
             return {
                 ...state,
                 data: action.payload
-            }
+            } 
             case "EDIT_USER":
-
+                                          
             const editdata = state.data.filter((el) => el.id === action.payload)
             console.log(editdata)
             return {

@@ -14,7 +14,7 @@ import { editRecord } from "../../Redux/Post/actions";
 export default function AlertDialog() {
   const user = useSelector((state) => state.datareducer.editUser);
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const [edit, setEdit] = useState({
     title: "",
     body: "",

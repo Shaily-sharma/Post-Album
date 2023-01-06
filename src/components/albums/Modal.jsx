@@ -13,7 +13,7 @@ import { getedit } from "../../Redux/Album/actions/index";
 export default function AlertDialognew() {
   const user = useSelector((state) => state.albumreducer.editbut);
   console.log(user, "??/");
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
   const [edit, setEdit] = useState(user, { title: "", body: "" });
 
   useEffect(() => {

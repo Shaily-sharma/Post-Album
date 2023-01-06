@@ -22,11 +22,11 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { editbut, userdelete } from "../../Redux/Album/actions/index"
-import Alertt from "./Alcreate";
+import Alertt from "./Createalbum";
 import AlertDialognew from "./Modal";
 import Swal from "sweetalert2";
-import AlertDialogSlide from './Photos'
-import FullScreenDialogg from "./All"
+import AlertDialogSlide from './Showphotos'
+import FullScreenDialogg from "./Addalbum"
 
 function TablePaginationActionss(props) {
   const dispatch = useDispatch();
@@ -133,8 +133,8 @@ export default function CustomPaginationActionsTable() {
   };
 
   
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - getData.length) : 0;

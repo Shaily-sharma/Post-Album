@@ -18,7 +18,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-import Alert from "./Create";
+import Alert from "./Createpost";
 
 import {
   editUser,
@@ -32,7 +32,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import Filter from "./Filter";
 import AlertDialogSlide from "./Comment";
-import FullScreenDialog from "./Show";
+import FullScreenDialog from "./Showpost";
 function TablePaginationActions(props) {
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -141,8 +141,8 @@ export default function CustomPaginationActionsTable() {
   const result = newData.filter((c) => c.userId === filterName);
   const comment = ComState.filter((d) => d.postId === val);
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - newData.length) : 0;
