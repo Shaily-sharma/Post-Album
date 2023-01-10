@@ -14,7 +14,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Addalbum() {
+export default function AddAlbum() {
   const [open, setOpen] =useState(true);
 
   const handleClickOpen = () => {

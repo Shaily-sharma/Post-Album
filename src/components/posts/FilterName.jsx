@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPersonName, setResult } from "../../Redux/Post/actions";
 import "../style.css";
 
-export default function Filtername() {
+export default function FilterName() {
   const { userList, filterName } = useSelector((state) => state.datareducer);
   const dispatch = useDispatch();
 

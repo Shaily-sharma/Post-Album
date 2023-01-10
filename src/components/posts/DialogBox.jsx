@@ -11,7 +11,7 @@ import "../style.css";
 import { useEffect } from "react";
 import { editRecord } from "../../Redux/Post/actions";
 
-export default function Dialogbox() {
+export default function DialogBox() {
   const user = useSelector((state) => state.datareducer.editUser);
 
   const [open, setOpen] = useState(true);

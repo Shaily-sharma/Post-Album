@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
@@ -11,15 +8,10 @@ import TableFooter from "@mui/material/TableFooter";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-import Createpost from "./Createpost";
-
+import CreatePost from "./CreatePost";
+import Paginationn from "../Paginationn";
 import {
   editUser,
   getComment,
@@ -27,87 +19,13 @@ import {
   getUser,
   userdelete,
 } from "../../Redux/Post/actions";
-import Dialogbox from "./Dialogbox";
+import DialogBox from "./DialogBox";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import Filtername from "./Filtername";
+import FilterName from "./FilterName";
 import  Comment from "./Comment";
-import Showpost from "./Showpost";
-function Post(props) {
-  const dispatch = useDispatch();
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
+ import ShowPost from "./ShowPost";
 
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  useEffect(() => {
-    dispatch(getRecord());
-    dispatch(getUser());
-    dispatch(getComment());
-  }, [dispatch]);
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowRight />
-        ) : (
-          <KeyboardArrowLeft />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === "rtl" ? (
-          <KeyboardArrowLeft />
-        ) : (
-          <KeyboardArrowRight />
-        )}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
-
-Post.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
 
 export default function Postp() {
   const dispatch = useDispatch();
@@ -142,7 +60,7 @@ export default function Postp() {
   const comment = ComState.filter((d) => d.postId === val);
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - newData.length) : 0;
@@ -161,16 +79,22 @@ export default function Postp() {
     setVisible(true);
     setVal(e);
   };
-  const createpost = () => {
+  const createPost = () => {
     setDisplay(true);
   };
-  const showpost = () => {
+  const showPost = () => {
     setVis(true);
   };
 
+  useEffect(() => {
+    dispatch(getRecord());
+    dispatch(getUser());
+    dispatch(getComment());
+  }, [dispatch]);
+
   return (
     <div>
-      <Filtername />
+      <FilterName />
       <Button
         style={{
           color: "black",
@@ -181,7 +105,7 @@ export default function Postp() {
           marginTop: "-75px",
         }}
         variant="outlined"
-        onClick={createpost}
+        onClick={createPost}
       >
         Create Post
       </Button>
@@ -195,13 +119,13 @@ export default function Postp() {
           marginTop: "-112px",
         }}
         variant="outlined"
-        onClick={showpost}
+        onClick={showPost}
       >
         Show Post
       </Button>
       <TableContainer
         component={Paper}
-        style={{ margin: "2rem", width: "90%", border: "1px solid black" }}
+        style={{ marginLeft:'4rem',margin: "1rem", width: "90%", border: "1px solid black" ,height:'50%'}}
       >
         <Table
           aria-label="custom pagination table"
@@ -284,7 +208,7 @@ export default function Postp() {
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
+                colSpan={7}
                 count={newData.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
@@ -296,16 +220,16 @@ export default function Postp() {
                 }}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={Post}
+                ActionsComponent={Paginationn}
               />
             </TableRow>
           </TableFooter>
         </Table>
       </TableContainer>
-      {visible ? < Comment data={comment} /> : ""}
-      {show ? <Dialogbox /> : ""}
-      {display ? <Createpost/> : ""}
-      {vis ? <Showpost /> : ""}
+      {visible && < Comment data={comment} />}
+      {show && <DialogBox /> }
+      {display && <CreatePost/> }
+      {vis && <ShowPost /> }
     </div>
   );
 }
