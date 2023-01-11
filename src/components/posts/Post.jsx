@@ -15,10 +15,11 @@ import Paginationn from "../Paginationn";
 import {
   editUser,
   getComment,
+  getParticularComment,
   getRecord,
   getUser,
-  userdelete,
-} from "../../Redux/Post/actions";
+  deleteData
+} from "../../Redux/Post/action";
 import DialogBox from "./DialogBox";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
@@ -32,11 +33,10 @@ export default function Postp() {
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
-  const [val, setVal] = useState("");
   const [vis, setVis] = useState("");
 
   const handleDelete = (id) => {
-    dispatch(userdelete(id));
+    dispatch(deleteData(id));
     Swal.fire({
       position: "center",
       icon: "success",
@@ -48,16 +48,15 @@ export default function Postp() {
 
   const handleEdit = (id) => {
     setShow(true);
-
-    dispatch(editUser(id));
+   dispatch(editUser(id));
   };
 
-  const { newData, filterName, filterState, ComState } = useSelector(
+  const { newData, filterName, filterState } = useSelector(
     (state) => state.datareducer
   );
 
   const result = newData.filter((c) => c.userId === filterName);
-  const comment = ComState.filter((d) => d.postId === val);
+ 
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -74,10 +73,9 @@ export default function Postp() {
     setPage(0);
   };
 
-  const showComment = (e) => {
-    console.log("mmm", e);
+  const showComment = (id) => {
+    dispatch(getParticularComment(id))
     setVisible(true);
-    setVal(e);
   };
   const createPost = () => {
     setDisplay(true);
@@ -125,7 +123,7 @@ export default function Postp() {
       </Button>
       <TableContainer
         component={Paper}
-        style={{ marginLeft:'4rem',margin: "1rem", width: "90%", border: "1px solid black" ,height:'50%'}}
+        style={{ margin: "1rem", width: "90%", border: "1px solid black" ,height:'50%'}}
       >
         <Table
           aria-label="custom pagination table"
@@ -226,7 +224,7 @@ export default function Postp() {
           </TableFooter>
         </Table>
       </TableContainer>
-      {visible && < Comment data={comment} />}
+      {visible && < Comment  />}
       {show && <DialogBox /> }
       {display && <CreatePost/> }
       {vis && <ShowPost /> }

@@ -9,17 +9,23 @@ export const setPersonName = (name) => {
   };
 };
 
-export const get = (data) => {
+export const createPostData = (data) => {
+  return {
+    type: "CREATE_DATA",
+    payload: data,
+  };
+};
+export const getData = (data) => {
   return {
     type: "GET_DATA",
     payload: data,
   };
 };
 
-export const userdelete = (id) => {
+export const userDelete = (del) => {
   return {
     type: "DELETE_USER",
-    payload: id,
+    payload: del,
   };
 };
 
@@ -44,19 +50,6 @@ export const editUser = (user) => {
     payload: user,
   };
 };
-export const sub = (ndata) => {
-  return {
-    type: "CREATE_USER",
-    payload: ndata,
-  };
-};
-export const crea = (create) => {
-  console.log("lllll", create);
-  return {
-    type: "CREATE",
-    payload: create,
-  };
-};
 export const setComment = (com) => {
   return {
     type: "SET_COMMENT",
@@ -68,7 +61,7 @@ export const getRecord = () => {
   return (dispatch) => {
     axios
       .get(`${BASE_URL}posts`)
-      .then((res) => dispatch(get(res.data)))
+      .then((res) => dispatch(getData(res.data)))
       .catch((err) => {
         console.log(err);
       });
@@ -76,8 +69,6 @@ export const getRecord = () => {
 };
 
 export const editRecord = (data, id) => {
-  console.log(id, data, "sdfasfdasfsfasrdf");
-
   return (dispatch) => {
     axios
       .patch(`${BASE_URL}posts/${id}`, data)
@@ -113,3 +104,41 @@ export const getComment = () => {
       });
   };
 };
+
+export const getParticularComment = (id) => {
+  return (dispatch) => {
+    axios
+      .get(`${BASE_URL}posts/${id}/comments`)
+      .then((res) => dispatch(setComment(res.data)))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const deleteData=(id)=>{
+  return(dispatch)=>{
+    axios.delete(`${BASE_URL}posts/${id}`)
+    .then((res) => {
+      dispatch(userDelete(res.data));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+}
+
+
+export const createPost = (data) => {
+  console.log(data,"datdsadstdastdsgfasd");
+  return (dispatch) => {
+    axios.post(`${BASE_URL}posts`, data)
+    .then((res) => {
+      console.log(res.data,"======");
+      dispatch(createPostData([res.data]));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+}

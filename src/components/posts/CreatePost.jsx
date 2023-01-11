@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
-import { crea } from "../../Redux/Post/actions/index";
+import { createPost }  from "../../Redux/Post/action";
 import "../style.css";
 
 export default function CreatePost() {
@@ -22,8 +22,9 @@ export default function CreatePost() {
   console.log(data);
 
   const handleSubmit = (e) => {
+    console.log(e,"iiii");
     e.preventDefault();
-    dispatch(crea([data]));
+    dispatch(createPost(data));
     setOpen(false);
   };
 

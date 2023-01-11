@@ -6,7 +6,7 @@ const initial_state = {
   filterName: "",
   filterState: false,
   ComState: [],
-  submit: [],
+  createPost:[]
 };
 
 export const datareducer = (state = initial_state, action) => {
@@ -18,33 +18,24 @@ export const datareducer = (state = initial_state, action) => {
         newData: action.payload,
       };
     case "DELETE_USER":
-      console.log("vvv", state.data);
       const remove = state.data.filter((el) => el.id !== action.payload);
-      console.log("kkk", remove);
       return {
         ...state,
         newData: remove,
       };
-    case "CREATE_USER":
-      return {
-        ...state,
-        create: action.payload,
-      };
-    case "CREATE":
-      return {
-        ...state,
-        submit: action.payload,
-      };
+      case "CREATE_DATA":
+        return {
+          ...state,
+          createPost: action.payload,
+        };
     case "EDIT_USER":
       const editdata = state.data.filter((el) => el.id === action.payload);
-      console.log(editdata);
       return {
         ...state,
         editUser: editdata,
       };
 
     case "GET_USER":
-      console.log(state.data);
       const editu = state.data.filter((el) => el.id !== action.payload);
       return {
         ...state,

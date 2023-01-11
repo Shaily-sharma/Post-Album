@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { useEffect } from "react";
-import { getedit } from "../../Redux/Album/actions/index";
+import { getEdit } from "../../Redux/Album/action";
 
 export default function Modal() {
   const user = useSelector((state) => state.albumreducer.editbut);
@@ -28,7 +28,7 @@ export default function Modal() {
 
   const handleEditSave = (id, data) => {
     console.log(data, id);
-    dispatch(getedit(data, id));
+    dispatch(getEdit(data, id));
     setOpen(false);
   };
 

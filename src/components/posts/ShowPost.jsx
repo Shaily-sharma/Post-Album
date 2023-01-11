@@ -17,22 +17,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ShowPost() {
   const [open, setOpen] = useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
-  const { submit } = useSelector((state) => state.datareducer);
+  const { createPost } = useSelector((state) => state.datareducer);
 
-  console.log(submit, "=====>submitsubmitsubmitsubmit");
+  console.log(createPost, "=====>submitsubmitsubmitsubmit");
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
-      </Button>
       <Dialog
         fullScreen
         open={open}
@@ -58,7 +51,7 @@ export default function ShowPost() {
           </Toolbar>
         </AppBar>
         <div>
-          {submit.map((e) => {
+          {createPost.map((e) => {
             return (
               <div>
                 <table>

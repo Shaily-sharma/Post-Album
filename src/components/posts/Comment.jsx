@@ -6,13 +6,17 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
+import { useSelector } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Comment({ data }) {
+export default function Comment() {
   const [open, setOpen] =useState(true);
+
+  const {ComState} = useSelector((state) => state.datareducer)
+  console.log(ComState);
 
   const handleClose = () => {
     setOpen(false);
@@ -30,7 +34,7 @@ export default function Comment({ data }) {
         <DialogTitle>{"Comments"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            {data.map((e) => {
+            {ComState.map((e) => {
               return (
                 <>
                   <ul>

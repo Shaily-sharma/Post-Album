@@ -4,10 +4,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import { cre } from "../../Redux/Album/actions/index";
+import {  createAlbum } from "../../Redux/Album/action";
 import { useDispatch } from "react-redux";
 
-export default function Createalbum() {
+export default function CreateAlbum() {
   const [open, setOpen] = useState(true);
   const [data, setData] = useState({ title: "" });
 
@@ -20,7 +20,7 @@ export default function Createalbum() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(cre([data]));
+    dispatch(createAlbum(data));
     setOpen(false);
   };
   const handleClose = () => {

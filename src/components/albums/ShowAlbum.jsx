@@ -14,24 +14,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AddAlbum() {
+export default function ShowAlbum() {
   const [open, setOpen] =useState(true);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
   };
-  const { submit } = useSelector((state) => state.albumreducer);
+  const {   createAlbum } = useSelector((state) => state.albumreducer);
 
-  console.log(submit, "=====>submitsubmitsubmitsubmit");
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open full-screen dialog
-      </Button>
       <Dialog
         fullScreen
         open={open}
@@ -57,7 +49,7 @@ export default function AddAlbum() {
           </Toolbar>
         </AppBar>
         <div>
-          {submit.map((e) => {
+          {  createAlbum.map((e) => {
             return (
               <div>
                 <table>

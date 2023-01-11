@@ -7,14 +7,16 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import "../style.css";
+import { useSelector } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Showphotos({ photo }) {
+export default function Showphotos() {
   const [open, setOpen] = useState(true);
 
+  const {imgState} = useSelector((state) => state.albumreducer)
   const handleClose = () => {
     setOpen(false);
   };
@@ -31,7 +33,7 @@ export default function Showphotos({ photo }) {
         <DialogTitle>{"PHOTOS"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            {photo.map((v) => {
+            {imgState.map((v) => {
               return (
                 <>
                   <div

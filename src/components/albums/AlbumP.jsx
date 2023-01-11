@@ -9,30 +9,28 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { getAlb, getimg } from "../../Redux/Album/actions/index";
+import { getAlbum,getParticularImg } from "../../Redux/Album/action";
 import { useDispatch, useSelector } from "react-redux";
 import Paper from "@mui/material/Paper";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import { editbut, userdelete } from "../../Redux/Album/actions/index";
+import { editbut } from "../../Redux/Album/action";
 import CreateAlbum from "./CreateAlbum";
 import Modal from "./Modal";
 import Swal from "sweetalert2";
 import ShowPhotos from "./ShowPhotos";
-import AddAlbum from "./AddAlbum";
+import ShowAlbum from "./ShowAlbum";
 import Paginationn from "../Paginationn";
+import { deleteData } from "../../Redux/Album/action";
 
 export default function Album() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false);
   const [display, setDisplay] = useState(false);
-  const [val, setVal] = useState(" ");
   const [vis, setVis] = useState("");
 
   const getData = useSelector((state) => state.albumreducer.data);
-  const geti = useSelector((state) => state.albumreducer.imgState);
-
-  const pho = geti.filter((d) => d.albumId === val);
+  
   const handleEdit = (id) => {
     setShow(true);
 
@@ -40,7 +38,7 @@ export default function Album() {
   };
 
   const handleDelete = (id) => {
-    dispatch(userdelete(id));
+    dispatch(deleteData(id));
     Swal.fire({
       position: "center",
       icon: "success",
@@ -65,9 +63,10 @@ export default function Album() {
     setPage(0);
   };
 
-  const showPhoto = (k) => {
+  const showPhoto = (id) => {
+    dispatch(getParticularImg(id))
     setVisible(true);
-    setVal(k);
+    // setVal(k);
   };
   /* <img src={e.url} width="40" alt='photos'/> */
   const createAlbum = () => {
@@ -77,8 +76,8 @@ export default function Album() {
     setVis(true);
   };
   useEffect(() => {
-    dispatch(getAlb());
-    dispatch(getimg());
+    dispatch(getAlbum());
+    dispatch(getParticularImg());
   }, [dispatch]);
   return (
     <div>
@@ -209,9 +208,9 @@ export default function Album() {
         </Table>
       </TableContainer>
       {show && <Modal />}
-      {visible && <ShowPhotos photo={pho} />}
+      {visible && <ShowPhotos />}
       {display && <CreateAlbum display={display} />}
-      {vis && <AddAlbum />}
+      {vis && <ShowAlbum />}
     </div>
   );
 }

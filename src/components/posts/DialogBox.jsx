@@ -9,7 +9,7 @@ import { useState } from "react";
 
 import "../style.css";
 import { useEffect } from "react";
-import { editRecord } from "../../Redux/Post/actions";
+import { editRecord } from "../../Redux/Post/action";
 
 export default function DialogBox() {
   const user = useSelector((state) => state.datareducer.editUser);
